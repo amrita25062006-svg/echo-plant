@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Whisperer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating background blobs -->
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+  </div>
+
+  <!-- Floating leaves -->
+  <div class="leaves-bg" aria-hidden="true">
+    <span class="leaf" style="--d:8s;--x:10%;--s:1.2">🌿</span>
+    <span class="leaf" style="--d:12s;--x:80%;--s:0.8;--delay:-4s">🍃</span>
+    <span class="leaf" style="--d:10s;--x:55%;--s:1;--delay:-7s">🌱</span>
+    <span class="leaf" style="--d:14s;--x:25%;--s:0.7;--delay:-2s">🍀</span>
+    <span class="leaf" style="--d:9s;--x:90%;--s:1.1;--delay:-5s">🌿</span>
+  </div>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-badge">AI · Plant Vision</div>
+      <h1>Plant<br><em>Whisperer</em></h1>
+      <p class="tagline">Upload a photo. Hear your plant speak.</p>
+      <div class="header-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
+
+    <!-- Upload zone -->
+    <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-in').click()" role="button" tabindex="0" aria-label="Upload plant photo">
+      <div class="upload-inner">
+        <div class="upload-icon-ring">
+          <i class="ti ti-camera-plus"></i>
+        </div>
+        <p class="upload-title">Drop your plant here</p>
+        <p class="upload-sub">or click to browse · jpg · png · webp</p>
+        <div class="upload-pill">
+          <i class="ti ti-sparkles"></i> AI-powered identification
+        </div>
+      </div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+    </div>
+    <input type="file" id="file-in" accept="image/*" style="display:none">
+
+    <!-- Preview -->
+    <div id="preview-wrap" class="preview-wrap" style="display:none">
+      <div class="preview-frame">
+        <img id="preview" alt="Uploaded plant">
+        <div class="preview-overlay">
+          <span class="preview-tag"><i class="ti ti-leaf"></i> ready to identify</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="identify-btn" class="primary-btn">
+          <span class="btn-glow"></span>
+          <i class="ti ti-sparkles"></i>
+          <span>Identify &amp; listen</span>
+        </button>
+        <button id="reset-btn" class="ghost-btn">
+          <i class="ti ti-refresh"></i>
+          <span>New photo</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Result card -->
+    <div id="result-card" class="result-card" style="display:none">
+
+      <div class="result-top">
+        <div class="plant-avatar" id="plant-emoji"></div>
+        <div class="plant-meta">
+          <div class="plant-name" id="plant-name"></div>
+          <div class="plant-sci" id="plant-sci"></div>
+        </div>
+        <div id="health-badge-wrap" class="health-badge-wrap"></div>
+      </div>
+
+      <div class="speech-section">
+        <div class="speech-quote-mark">"</div>
+        <p class="plant-speech" id="plant-speech"></p>
+        <div class="speech-quote-mark speech-quote-close">"</div>
+      </div>
+
+      <div class="care-section">
+        <p class="care-title"><i class="ti ti-heart"></i> Care guide</p>
+        <div class="care-grid" id="care-grid"></div>
+      </div>
+
+      <div class="ask-section" id="ask-row" style="display:none">
+        <p class="ask-title"><i class="ti ti-message-circle"></i> Talk to your plant</p>
+        <div class="ask-input-row">
+          <input type="text" id="ask-input" placeholder="e.g. Why are your leaves turning yellow?" autocomplete="off">
+          <button id="ask-btn" class="ask-btn">
+            <i class="ti ti-send"></i>
+          </button>
+        </div>
+        <div id="follow-ans" class="follow-up-ans" style="display:none"></div>
+      </div>
+
+    </div>
+
+    <footer class="site-footer">
+      <span>Powered by Claude · Anthropic</span>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
